@@ -1,14 +1,15 @@
 # Summary
 
-# NextJS
+# Languages
 
-- [Setup](./next_js_setup.md)
-  - [Manual](./next_js_setup_manual.md)
+- [Rust](./rust.md)
+- [Go](./go.md)
 
-# Rust
+# Frameworks
 
-- [Rust](./rust_setup.md)
+- [NextJS](./next_js.md)
+  - [404](./next_js_404.md)
+  - [Hooks](./next_js_hooks.md)
+  - [Server Component](./next_js_server.md)
 
-# Go
-
-- [Go](./go_setup.md)
+# Back-end
