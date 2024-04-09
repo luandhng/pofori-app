@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main className="text-green-400">
-      <h1>Wow you are cool</h1>
+      <h1>Wow you are coolff</h1>
     </main>
   );
 }
