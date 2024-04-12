@@ -1,8 +1,9 @@
 export default function Home() {
   return (
-    <main className="text-green-400">
-      <h1>Wow you are coolff</h1>
-      <p>Helleweo</p>
+    <main className="">
+      <h1>Love is here</h1>
+      <p>Love is here dont worry too much</p>
+      <p>You are so nice</p>
     </main>
   );
 }
