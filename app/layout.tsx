@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Tools",
   description: "",
+  appleWebApp: true,
 };
 
 export default function RootLayout({
