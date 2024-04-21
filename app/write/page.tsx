@@ -10,7 +10,7 @@ const Write = async () => {
     .order("created_at", { ascending: false });
 
   return (
-    <main className="h-full grid grid-cols-12">
+    <main className="h-full lg:grid lg:grid-cols-12">
       <Topics notes={notes} />
       <Notes />
     </main>
