@@ -1,26 +1,24 @@
-import { supabase } from "@/utils/supabase/client";
+import { login } from "@/actions/login";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-const getAdmin = async () => {
+export default async function Home() {
+  const supabase = createClient();
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  return user;
-};
-
-export default async function Home() {
-  const admin = getAdmin();
-
-  if (!admin) {
-    console.log("none");
+  if (user !== null) {
+    redirect("/write");
   }
 
   return (
     <main className="h-full flex items-center justify-center">
-      <form action="" className="flex flex-col gap-1">
-        <input type="email" />
-        <input type="password" />
-        <input type="submit" />
+      <form className="flex flex-col gap-1">
+        <input id="email" name="email" type="email" required />
+        <input id="password" name="password" type="password" required />
+        <button formAction={login}>Log in</button>
       </form>
     </main>
   );
