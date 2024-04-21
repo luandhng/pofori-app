@@ -1,7 +1,9 @@
 "use client";
 
+import { addTopic } from "@/actions/addTopic";
 import { useNotesDataStore } from "@/stores/notesDataStore";
 import { useSelectedTopicStore } from "@/stores/selectedTopicStore";
+import { createClient } from "@/utils/supabase/client";
 import { useEffect } from "react";
 
 interface TopicsProps {
@@ -11,6 +13,7 @@ interface TopicsProps {
 export const Topics = ({ notes }: TopicsProps) => {
   const { selectedTopic, setSelectedTopic } = useSelectedTopicStore();
   const { data, setData, addData, removeTopic } = useNotesDataStore();
+  const supabase = createClient();
   const uuid = crypto.randomUUID();
 
   useEffect(() => {
@@ -20,9 +23,10 @@ export const Topics = ({ notes }: TopicsProps) => {
   return (
     <div className="col-span-2 border-r border-neutral-400">
       <button
-        onClick={() => {
+        onClick={async () => {
           addData({ this_topic: uuid, topic: "", note: "" });
           setSelectedTopic(uuid);
+          addTopic(uuid);
         }}
         className="p-3 border-b bg-neutral-200 font-semibold border-neutral-400 w-full"
       >
