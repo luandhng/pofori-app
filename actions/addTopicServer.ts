@@ -2,7 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server";
 
-export async function addTopic(uuid: string) {
+export async function addTopicServer(uuid: string) {
   const supabase = createClient();
 
   await supabase
