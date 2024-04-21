@@ -15,9 +15,10 @@ export const Notes = ({ data }: NotesProps) => {
         (item: any, index: number) =>
           item.topic === selectedTopic && (
             <div key={index} className="">
-              <div className=" p-3 border-b border-neutral-400 font-semibold">
-                {item.topic}
-              </div>
+              <input
+                defaultValue={item.topic}
+                className=" p-3 border-b w-full border-neutral-400 font-semibold"
+              ></input>
               <div className="p-3">{item.note}</div>
             </div>
           )
