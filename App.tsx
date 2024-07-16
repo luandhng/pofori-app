@@ -3,9 +3,9 @@ import { Text, View } from "react-native";
 
 export default function App() {
   return (
-    <View className="bg-red-500 h-full flex justify-center items-center">
+    <View className="bg-red-600 h-full flex justify-center items-center">
       <Text className="text-xl text-white font-medium">
-        Please arrive at the location
+        You are not in the zone
       </Text>
 
       {/* <Workers /> */}
