@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { supabase } from "../utils/supabase";
 
-export const locations = () => {
+export const Locations = () => {
   const [locations, setLocations] = useState<any>();
 
   useEffect(() => {
