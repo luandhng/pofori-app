@@ -17,27 +17,27 @@ type GeofencingTaskError = {
 
 const YOUR_TASK_NAME = "GEOFENCING_TASK";
 
-// TaskManager.defineTask(
-//   YOUR_TASK_NAME,
-//   ({
-//     data,
-//     error,
-//   }: {
-//     data: GeofencingTaskData;
-//     error: GeofencingTaskError | null;
-//   }) => {
-//     if (error) {
-//       console.error("Geofencing error:", error.message);
-//       return;
-//     }
-//     const { eventType, region } = data;
-//     if (eventType === GeofencingEventType.Enter) {
-//       console.log("You've entered region:", region);
-//     } else if (eventType === GeofencingEventType.Exit) {
-//       console.log("You've left region:", region);
-//     }
-//   }
-// );
+TaskManager.defineTask(
+  YOUR_TASK_NAME,
+  ({
+    data,
+    error,
+  }: {
+    data: GeofencingTaskData;
+    error: GeofencingTaskError | null;
+  }) => {
+    if (error) {
+      console.error("Geofencing error:", error.message);
+      return;
+    }
+    const { eventType, region } = data;
+    if (eventType === GeofencingEventType.Enter) {
+      console.log("You've entered region:", region);
+    } else if (eventType === GeofencingEventType.Exit) {
+      console.log("You've left region:", region);
+    }
+  }
+);
 
 export default function App() {
   const [locations, setLocations] = useState<any>([]);
@@ -52,36 +52,67 @@ export default function App() {
         setErrorMsg("Permission to access location was denied");
         return;
       }
+      let { granted } = await Location.requestBackgroundPermissionsAsync();
+      if (granted && status === "granted") {
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
 
-      await Location.requestBackgroundPermissionsAsync();
+        let { data: locations } = await supabase.from("locations").select("*");
+        setLocations(locations);
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+        locations.forEach(async (item) => {
+          await Location.startGeofencingAsync("REGIONS", [
+            {
+              identifier: item.name,
+              latitude: item.lat,
+              longitude: item.lng,
+              radius: item.radius,
+            },
+          ]);
+        });
+
+        checkIfInsideGeofence(location, locations);
+      }
     })();
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      let { data: locations } = await supabase.from("locations").select("*");
-      setLocations(locations);
+    async () => {
+      if (isInside) {
+        const { data, error } = await supabase
+          .from("punch_time")
+          .insert([{ name: "Sam", location: "DSG Signs Graphics" }]);
 
-      locations.forEach(async (item) => {
-        await Location.startGeofencingAsync("REGIONS", [
-          {
-            identifier: item.name,
-            latitude: item.lat,
-            longitude: item.lng,
-            radius: item.radius,
-          },
-        ]);
-      });
-
-      // Check if the user is inside any of the geofenced regions
-      checkIfInsideGeofence(location, locations);
+        console.log(data);
+        console.log("hello you");
+      } else {
+        console.log("who are you");
+      }
     };
+  }, [isInside]);
 
-    fetchData();
-  }, [location]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     let { data: locations } = await supabase.from("locations").select("*");
+  //     setLocations(locations);
+
+  //     // Check if the user is inside any of the geofenced regions
+  //     checkIfInsideGeofence(location, locations);
+
+  //     if (isInside) {
+  //       async () => {
+  //         const { data, error } = await supabase
+  //           .from("punch_time")
+  //           .insert([{ name: "Sam", location: "DSG Signs Graphics" }]);
+
+  //         console.log(data);
+  //         console.log("hello you");
+  //       };
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [location]);
 
   const getDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371e3; // Earth’s mean radius in meters
