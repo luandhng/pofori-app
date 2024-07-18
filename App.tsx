@@ -78,10 +78,8 @@ export default function App() {
 
   useEffect(() => {
     if (isInside) {
-      console.log("yesssssss");
       PunchTime();
     } else {
-      console.log("nononononoo");
     }
   }, [isInside]);
 
