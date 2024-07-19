@@ -86,7 +86,7 @@ export default function App() {
   const PunchTime = async () => {
     await supabase
       .from("punch_time")
-      .insert([{ name: "Tom", location: "DSG Signs Graphics" }]);
+      .insert([{ name: "Tim", location: "DSG Signs Graphics" }]);
   };
 
   const getDistance = (lat1, lon1, lat2, lon2) => {
