@@ -9,7 +9,7 @@ export default function Home() {
           href="https://rutracker.org/forum/index.php"
           text="RuTracker"
         />
-        <LinkSite href="https://binged.live/" text="Movies" />
+        <LinkSite href="https://fboxz.to/home" text="Movies" />
         <LinkSite href="https://mangareader.to/home" text="Manga" />
         <LinkSite href="https://asianc.sh/" text="KR-JP" />
         <LinkSite href="https://hianime.to/home" text="Anime" />
