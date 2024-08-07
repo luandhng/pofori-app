@@ -10,6 +10,7 @@ export default function Home() {
           text="RuTracker"
         />
         <LinkSite href="https://fboxz.to/home" text="Movies" />
+        <LinkSite href="https://www.braflix.ru/" text="Movies 2" />
         <LinkSite href="https://mangareader.to/home" text="Manga" />
         <LinkSite href="https://asianc.sh/" text="KR-JP" />
         <LinkSite href="https://hianime.to/home" text="Anime" />
