@@ -14,6 +14,12 @@ export default function Home() {
         <LinkSite href="https://mangareader.to/home" text="Manga" />
         <LinkSite href="https://asianc.sh/" text="KR-JP" />
         <LinkSite href="https://hianime.to/home" text="Anime" />
+
+        <div>X</div>
+        <LinkSite
+          href="https://www.91porn.com/view_video.php?viewkey=5b024127dc762223b545&page=1&c=mcztl&viewtype=basic&category=mr"
+          text="Smoking Korean"
+        />
       </div>
     </main>
   );
