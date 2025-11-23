@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Potoforio",
-  description: "",
+  title: "Pofori",
+  description: "Easy and fast portfolio maker",
 };
 
 export default function RootLayout({
